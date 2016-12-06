@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#coded by Arun Kumar Shreevastave - 10 Sep 2015
+# coded by Arun Kumar Shreevastave - 10 Sep 2016
 
 from bs4 import BeautifulSoup
 import os
@@ -10,7 +10,7 @@ import base64
 from pyDes import *
 
 proxy_ip = ''
-#set http_proxy from environment
+# set http_proxy from environment
 if('http_proxy' in os.environ):
     proxy_ip = os.environ['http_proxy']
 
@@ -18,13 +18,17 @@ proxies = {
   'http': proxy_ip,
   'https': proxy_ip,
 }
-#proxy setup end here
+# proxy setup end here
 
 headers = {
     'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:49.0) Gecko/20100101 Firefox/49.0'
 }
 base_url = 'http://h.saavncdn.com'
 json_decoder = JSONDecoder()
+
+# Key and IV are coded in plaintext in the app when decompiled
+# and its preety insecure to decrypt urls to the mp3 at the client side
+# these operations should be performed at the server side.
 des_cipher = des(b"38346591", ECB, b"\0\0\0\0\0\0\0\0" , pad=None, padmode=PAD_PKCS5)
 
 
@@ -38,6 +42,8 @@ except Exception as e:
 
 
 soup = BeautifulSoup(res.text,"lxml")
+
+# Encrypted url to the mp3 are stored in the webpage
 songs_json = soup.find_all('div',{'class':'hide song-json'})
 
 for song in songs_json:
