@@ -45,6 +45,5 @@ for song in songs_json:
     print(obj['album'],'-',obj['title'])
     enc_url = base64.b64decode(obj['url'].strip())
     dec_url = des_cipher.decrypt(enc_url,padmode=PAD_PKCS5).decode('utf-8')
-    print(dec_url)
     dec_url = base_url + dec_url.replace('mp3:audios','') + '.mp3'
     print(dec_url,'\n')
