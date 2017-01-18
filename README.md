@@ -14,8 +14,11 @@ Prerequisite
 Besides Python and BeautifulSoup4, I used other libraries too which needs to be installed for the script to work.
 
 Python3     - https://www.python.org/download/releases/3.0/
+
 BeautifulSoup4  - https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+
 eyeD3           - http://eyed3.nicfit.net/
+
 Mutagen         - https://pypi.python.org/pypi/mutagen
 
 Each of them can be pip installed easily.
